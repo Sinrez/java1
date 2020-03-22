@@ -14,7 +14,7 @@ public class TriangleInfo {
     }
 
     public static boolean isRightTriangle(int a, int b, int c){
-         if (c * c == (a * a + b * b) || b * b == (a * a + c * c) && a * a == (b * b + c * c)){
+         if (a > 0 && b > 0 && c > 0 && (c * c == a * a + b * b || b * b == a * a + c * c || a * a == b * b + c * c)){
             return true;
         } else {
             return false;
@@ -29,7 +29,7 @@ public class TriangleInfo {
     public static boolean isIsoscelesTriangle(int a, int b, int c){
         //    которая возвращает true, если треугольник со сторонами a, b, c является равнобедренным.
 //    Из геометрии известно, что в равнобедренном треугольнике есть две равные стороны.
-        if ((a == b) || (a == c) || (b == c)){
+        if (( a > 0 && b > 0 && c > 0) && (a == b || a == c || b == c)){
             return true;
         } else {
             return false;
