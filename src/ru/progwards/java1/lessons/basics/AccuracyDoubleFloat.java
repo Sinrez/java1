@@ -7,13 +7,13 @@ package ru.progwards.java1.lessons.basics;
         public static double volumeBallDouble(double radius){
             //4/3πR3.
             double pi = 3.14;
-            double v = 4 / 3 * pi * Math.pow(radius, 3);
+            double v = (double)4 / 3 * pi * radius * radius * radius;
             return v;
         }
 
         public static float volumeBallFloat(float radius){
             float pi = 3.14f;
-            float v = (float) (4 / 3 * pi * Math.pow(radius, 3));
+            float v = (float) (4 / 3 * radius * radius * radius);
             return v;
 
         }

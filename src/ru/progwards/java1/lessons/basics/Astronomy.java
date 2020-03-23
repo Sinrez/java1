@@ -6,7 +6,7 @@ public class Astronomy {
         final Double pi;
         pi = 3.14;
         //вычисляет площадь поверхности сферы радиуса R по формуле S = 4πR^2
-        double s = 4 * pi * Math.pow(r, 2);
+        double s =  (double)4 * pi * r * r;
         return s;
     }
 
@@ -39,7 +39,7 @@ public class Astronomy {
 
         public static Double earthVsJupiter (){
         //которая вычисляет отношение площади поверхности Земли к площади поверхности Юпитера используя готовые функции площадей планет
-        return earthSquare() / mercurySquare();
+        return earthSquare() / jupiterSquare();
 
     }
 
