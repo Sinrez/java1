@@ -1,0 +1,23 @@
+package ru.progwards.java1.lessons.classes;
+
+public class Cow extends Animal {
+//    Реализовать класс Cow, потомок класса Animal, переопределяющий методы:
+//            1.4 public AnimalKind getKind(), который возвращает COW.
+//            1.5 public FoodKind getFoodKind(), который возвращает HAY
+    @Override
+    public AnimalKind getKind(){
+        return AnimalKind.COW;
+    }
+
+    @Override
+    public FoodKind getFoodKind(){
+        return FoodKind.HAY;
+    }
+
+    @Override
+    public double getFoodCoeff(){
+        //который должен возвращать 0.05
+        return 0.05;
+    }
+
+}
