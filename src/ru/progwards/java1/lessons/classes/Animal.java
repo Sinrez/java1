@@ -48,7 +48,7 @@ public class Animal {
     public double getFoodCoeff(){
         //который возвращает коэффициент веса еды к весу тела животного.
         // Для класса Animal это 0.02
-        return 0.02;
+        return 0.02D;
     }
 
     public double calculateFoodWeight(){
@@ -61,6 +61,6 @@ public class Animal {
         //    Для класса Animal, создать метод
 //    public String toStringFull(), что бы он возвращал информацию о животном в формате:
 //    I am <AnimalKind>, eat <FoodKind> <CalculateFoodWeight>
-        return toString() +" "+ calculateFoodWeight();
+        return "I am " + getKind() + ", eat " + getFoodKind() + " " + calculateFoodWeight();
     }
 }
