@@ -33,15 +33,15 @@ public class Eratosthenes {
     // 1.4 Реализовать метод
     // public boolean isSimjle(int n), который возвращает sieve[n],
     // что бы можно было узнать, простое число n или составное
-    public boolean isSimjle(int n){
+    public boolean isSimple(int n){
 
         return sieve[n];
     }
 
 //    public static void main(String[] args) {
 //        Eratosthenes eratosthenes = new Eratosthenes(7);
-//        System.out.println(eratosthenes.isSimjle(3));
-//        System.out.println(eratosthenes.isSimjle(4));
+//        System.out.println(eratosthenes.isSimple(3));
+//        System.out.println(eratosthenes.isSimple(4));
 //
 //    }
 
