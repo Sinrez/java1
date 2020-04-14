@@ -66,11 +66,13 @@ public class DIntArray {
         System.out.println(Arrays.toString(massDel));
     }
 
-    public int at(int pos){
-        //            3.5 метод
-//    - возвращает элемент по индексу pos.
-        return mass[pos];
-    }
+    public int at(int pos) {
+        if (pos < 0 || pos >= mass.length) {
+            return 0;
+        }
+           else {return mass[pos];}
+        }
+
 
     public static void main(String[] args) {
         DIntArray dIntArray = new DIntArray();
