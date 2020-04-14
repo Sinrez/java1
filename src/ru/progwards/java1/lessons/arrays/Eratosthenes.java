@@ -34,6 +34,7 @@ public class Eratosthenes {
     // public boolean isSimjle(int n), который возвращает sieve[n],
     // что бы можно было узнать, простое число n или составное
     public boolean isSimjle(int n){
+
         return sieve[n];
     }
 

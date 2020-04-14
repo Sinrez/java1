@@ -14,7 +14,7 @@ public class DIntArray {
 //        скопировать в него старый, и добавить в хвост элемент num.
     public void add(int num){
 
-        if (num > mass.length) {
+        if (num > mass.length || mass.length + 1 < 0) {
             return;
         }
 
@@ -22,10 +22,10 @@ public class DIntArray {
         massCopy[massCopy.length - 1] = num;
 
         //check
-//        System.out.println("Исходный");
-//        System.out.println(Arrays.toString(mass));
-//        System.out.println("с добавлением");
-//        System.out.println(Arrays.toString(massCopy));
+        System.out.println("Исходный");
+        System.out.println(Arrays.toString(mass));
+        System.out.println("с добавлением");
+        System.out.println(Arrays.toString(massCopy));
     }
 
     public void atInsert(int pos, int num){
@@ -43,7 +43,7 @@ public class DIntArray {
             else
                 newarr[i] = mass[i - 1];
         }
-//        System.out.println(Arrays.toString(newarr));
+        System.out.println(Arrays.toString(newarr));
     }
 
     public void atDelete(int pos){
@@ -51,7 +51,7 @@ public class DIntArray {
 //    при этом размер массива должен уменьшиться на 1.
 //    Для этого нужно будет разместить новый массив нужного размера, скопировать в него старый, уже без элемента, который был в позиции pos
         int[] massDel = new int[mass.length-1];
-        if (mass == null || pos < 0 || pos >= mass.length) {
+        if (mass == null || pos < 0 || pos >= mass.length || mass.length-1 < 0) {
             System.out.println("Ошибка формата массива");
         } else {
             for (int i = 0, k = 0; i < mass.length; i++) {
@@ -63,7 +63,7 @@ public class DIntArray {
                 massDel[k++] = mass[i];
             }
         }
-//        System.out.println(Arrays.toString(massDel));
+        System.out.println(Arrays.toString(massDel));
     }
 
     public int at(int pos){
@@ -72,12 +72,12 @@ public class DIntArray {
         return mass[pos];
     }
 
-//    public static void main(String[] args) {
-//        DIntArray dIntArray = new DIntArray();
-//        dIntArray.mass = new int[]{1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
-//        System.out.println(dIntArray.at(5));
-//        dIntArray.add(7);
-//        dIntArray.atDelete(1);
-//        dIntArray.atInsert(1, 99999);
-//    }
+    public static void main(String[] args) {
+        DIntArray dIntArray = new DIntArray();
+        dIntArray.mass = new int[]{1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+        System.out.println(dIntArray.at(5));
+        dIntArray.add(6);
+        dIntArray.atDelete(0);
+        dIntArray.atInsert(1, 99999);
+    }
 }
