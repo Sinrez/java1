@@ -14,7 +14,7 @@ public class DIntArray {
 //        скопировать в него старый, и добавить в хвост элемент num.
     public void add(int num){
 
-        if (num > mass.length || mass.length + 1 < 0) {
+        if (mass.length + 1 < 0) {
             return;
         }
 
@@ -33,7 +33,7 @@ public class DIntArray {
 //    при этом размер массива должен увеличиться на 1. Для этого нужно будет разместить
 //    новый массив нужного размера, скопировать в него старый,
 //    c учетом того, что новый элемент окажется где-то в середине, и потом положить в нужный индекс элемент num.
-        int i;
+        int i = 0;
         int newarr[] = new int[mass.length + 1];
         for (i = 0; i < mass.length + 1; i++) {
             if (i < pos - 1)
