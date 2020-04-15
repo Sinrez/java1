@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 public class DIntArray {
 //    Реализовать динамический, саморастущий массив целых чисел, по следующей спецификации:
-    private int [] mass = new int[]{};
+    private int [] mass = new int[]{1,2,3,4,5,6};
 
     public DIntArray(){
     }
@@ -14,9 +14,9 @@ public class DIntArray {
 //        скопировать в него старый, и добавить в хвост элемент num.
     public void add(int num){
 
-        if (mass.length + 1 < 0) {
-            return;
-        }
+//        if (mass.length + 1 < 0) {
+//            return;
+//        }
 
         int[] massCopy = Arrays.copyOf(mass, mass.length + 1);
         massCopy[massCopy.length - 1] = num;
@@ -34,6 +34,7 @@ public class DIntArray {
 //    новый массив нужного размера, скопировать в него старый,
 //    c учетом того, что новый элемент окажется где-то в середине, и потом положить в нужный индекс элемент num.
         int i = 0;
+
         int newarr[] = new int[mass.length + 1];
         for (i = 0; i < mass.length + 1; i++) {
             if (i < pos - 1)
@@ -50,10 +51,11 @@ public class DIntArray {
         //удаляет элемент в позиции pos массива,
 //    при этом размер массива должен уменьшиться на 1.
 //    Для этого нужно будет разместить новый массив нужного размера, скопировать в него старый, уже без элемента, который был в позиции pos
+
         int[] massDel = new int[mass.length-1];
-        if (mass == null || pos < 0 || pos >= mass.length || mass.length-1 < 0) {
-            System.out.println("Ошибка формата массива");
-        } else {
+//        if (mass == null || pos < 0 || pos >= mass.length || mass.length-1 < 0) {
+//            System.out.println("Ошибка формата массива");
+//        } else {
             for (int i = 0, k = 0; i < mass.length; i++) {
                 // если индекс  элемента удаления
                 if (i == pos) {
@@ -62,7 +64,7 @@ public class DIntArray {
                 // если индекс не индекс элемента удаления
                 massDel[k++] = mass[i];
             }
-        }
+        //}
         System.out.println(Arrays.toString(massDel));
     }
 
