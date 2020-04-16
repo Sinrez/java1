@@ -4,9 +4,10 @@ import java.util.Arrays;
 
 public class DIntArray {
 //    Реализовать динамический, саморастущий массив целых чисел, по следующей спецификации:
-    private int [] mass = new int[]{1,2,3,4,5,6};
+    private int [] mass;
 
     public DIntArray(){
+        mass = new int[]{};
     }
     //        public void add(int num) - добавляет элемент num в конец массива,
 //        при этом размер массива должен увеличиться на 1.
@@ -20,6 +21,7 @@ public class DIntArray {
 
         int[] massCopy = Arrays.copyOf(mass, mass.length + 1);
         massCopy[massCopy.length - 1] = num;
+        int[] mass = Arrays. copyOf(massCopy, massCopy.length);
 
         //check
         System.out.println("Исходный");
@@ -44,7 +46,10 @@ public class DIntArray {
             else
                 newarr[i] = mass[i - 1];
         }
-        System.out.println(Arrays.toString(newarr));
+        int[] mass = Arrays. copyOf(newarr, newarr.length);
+//        System.out.println(Arrays.toString(newarr));
+//        System.out.println("тестируем старый после добавления");
+//        System.out.println(Arrays.toString(mass));
     }
 
     public void atDelete(int pos){
@@ -64,6 +69,7 @@ public class DIntArray {
                 // если индекс не индекс элемента удаления
                 massDel[k++] = mass[i];
             }
+        int[] mass = Arrays. copyOf(massDel, massDel.length);
         //}
         System.out.println(Arrays.toString(massDel));
     }
