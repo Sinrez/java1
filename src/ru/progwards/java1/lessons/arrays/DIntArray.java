@@ -75,10 +75,7 @@ public class DIntArray {
     }
 
     public int at(int pos) {
-        if (pos < 0 || pos >= mass.length) {
-            return 0;
-        }
-           else {return mass[pos];}
+       return mass[pos];
         }
 
 
