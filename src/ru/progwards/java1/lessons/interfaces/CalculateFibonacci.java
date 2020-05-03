@@ -37,5 +37,14 @@ public class CalculateFibonacci {
         return result;
     }
 
+    public static CacheInfo getLastFibo(){
+            return lastFibo;
+        }
 
+    public static void clearLastFibo(){
+        lastFibo = null;
+    }
 }
+
+
+
