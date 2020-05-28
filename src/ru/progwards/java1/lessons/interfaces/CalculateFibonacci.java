@@ -5,8 +5,8 @@ public class CalculateFibonacci {
     private static CacheInfo lastFibo;
 
     static class CacheInfo {
-        int n;
-        int fibo;
+       public int n;
+       public int fibo;
     }
 
     public static int fiboNumber(int n) {
