@@ -1,107 +1,108 @@
 package ru.progwards.java1.lessons.interfaces;
 
-import java.util.Objects;
+public class Animal implements FoodCompare, Comparable {
 
-public class Animal implements FoodCompare, Comparable<Animal>{
+    static enum AnimalKind {ANIMAL, COW, HAMSTER, DUCK}
 
-    private double weight;
-    private double weightCoeff = 0.02D;
+    static enum FoodKind {UNKNOWN, HAY, CORN}
 
-    enum AnimalKind{
-        ANIMAL,
-        COW,
-        HAMSTER,
-        DUCK
-    }
-    enum FoodKind{
-        UNKNOWN,
-        HAY,
-        CORN
+    private AnimalKind animalKind = AnimalKind.ANIMAL;
+    private FoodKind foodKind = FoodKind.UNKNOWN;
+
+    private double weight = 1d; // вес животного
+    double foodCoeff = 0.02; // коэффициент веса еды к весу тела животного
+
+    Animal() {
     }
 
-    public Animal(){
-    }
-
-    public Animal(double weight){
+    Animal(double weight) { // не нужный объект, когда не задан тип животного
         this.weight = weight;
     }
 
-    public AnimalKind getKind(){
-        //public AnimalKind getKind(),
-        // который возвращает вид животного (enum AnimalKind - ANIMAL, COW, HAMSTER, DUCK).
-        // В данном классе вернуть ANIMAL
-        return AnimalKind.ANIMAL;
+    Animal(AnimalKind animalKind, FoodKind food, double weight, double foodCoeff) {
+        this.animalKind = animalKind;
+        this.foodKind = food;
+        this.weight = weight;
+        this.foodCoeff = foodCoeff;
     }
 
-    public FoodKind getFoodKind(){
-        //который возвращает вид еды, (enum FoodKind - UNKNOWN, HAY, CORN). В данном классе вернуть UNKNOWN
-        return FoodKind.UNKNOWN;
+    public AnimalKind getKind() {
+        return animalKind;
     }
 
-    public String toString(){
-        //который возвращает информацию о животном в формате:
-        //I am <AnimalKind>, eat <FoodKind>
-        return "I am "+getKind()+", "+"eat "+getFoodKind();
+    public FoodKind getFoodKind() {
+        return foodKind;
     }
 
-    public double getWeight(){
-        //который возвращает вес животного
+    @Override
+    public String toString() {
+        return "I am " + getKind() + ", eat " + getFoodKind() + " " + calculateFoodWeight();
+    }
+
+    public double getWeight() {
         return weight;
     }
 
-    public double getFoodCoeff(){
-        //который возвращает коэффициент веса еды к весу тела животного.
-        // Для класса Animal это 0.02
-        return weightCoeff;
+    void setFoodCoeff(double foodCoeff) {
+        this.foodCoeff = foodCoeff;
     }
 
-    public double calculateFoodWeight(){
-        //    который рассчитывает необходимый вес еды,
-//    по формуле - вес-еды = вес-животного * коэффициент веса тела.
+    public double getFoodCoeff() {
+        return foodCoeff;
+    }
+
+    public double getCoeff() {
+        return foodCoeff;
+    }
+
+    // рассчитывает необходимый вес еды, по формуле - вес-еды = вес-животного * коэффициент веса тела
+    public double calculateFoodWeight() {
         return getWeight() * getFoodCoeff();
     }
 
-    public String toStringFull(){
-        //    Для класса Animal, создать метод
-//    public String toStringFull(), что бы он возвращал информацию о животном в формате:
-//    I am <AnimalKind>, eat <FoodKind> <CalculateFoodWeight>
-        return "I am " + getKind() + ", eat " + getFoodKind() + " " + calculateFoodWeight();
-    }
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Animal animal = (Animal) o;
-        return Double.compare(animal.weight, weight) == 0;
+    // возвращает true, если объекты равны и false если не равны по параметру - вес животного
+    public boolean equals(Object anObject) {
+        if (anObject == this) return true;
+        if (anObject == null || anObject.getClass() != this.getClass()) return false;
+        Animal o = (Animal) anObject;
+        return Double.compare(o.calculateFoodWeight(), this.calculateFoodWeight()) == 0;
     }
 
+    // информация о цене 1 кг еды
     public double getFood1kgPrice() {
-        switch (getFoodKind()){
-            case HAY: return 20;
-            case CORN: return 50;
-            default: return 0;
+        switch (foodKind) {
+            case HAY: return 20d;
+            case CORN: return 50d;
         }
+        return 0d;
     }
 
+    // возвращает информацию о цене еды для данного животного
     public double getFoodPrice() {
         return calculateFoodWeight() * getFood1kgPrice();
     }
 
     @Override
+    // результаты сравнения цены еды для данного животного с ценой еды для другого животного
     public int compareFoodPrice(Animal animal) {
         return Double.compare(getFoodPrice(), animal.getFoodPrice());
     }
 
     @Override
-    public int compareTo(Animal animal) {
-        if (getWeight() < animal.getWeight()) {
-            return -1;
-        }
-        else if (getWeight() > animal.getWeight()){
-            return 1;
-        }
-        else {
-            return 0;
-        }
+    public int compareTo(Object o) {
+        if (o == this) return 0;
+        if (!(o instanceof Animal)) throw new RuntimeException("Object o is not inherited from Animal class.");
+        double w = this.getWeight();
+        double wo = ((Animal) o).getWeight();
+        if (w == wo) return 0;
+        if (w > wo) return 1;
+        return -1;
     }
+
+    public static void main(String[] args) {
+        Animal animal = new Animal();
+        System.out.println(animal);
+    }
+
 }

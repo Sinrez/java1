@@ -65,19 +65,7 @@ public class ArrayInteger {
             Arrays.fill(this.digits, (byte) 0);
             return false;
         }
-//            if (i < num.digits.length) {
-//                result_1 = BigInteger.valueOf(this.digits[i]).add(BigInteger.valueOf(num.digits[i]));
-//            } else {
-//                result_1 = BigInteger.valueOf(this.digits[i]);
-//            }
-//            result_2 = result_1.multiply(BigInteger.valueOf(10).pow(i));
-//            result = result.add(result_2);
-//        }
-//        if (result.toString().length() > this.digits.length){
-//            Arrays.fill(this.digits, (byte) 0);
-//            return false;
-//        }
-//            this.fromInt(result);
+
         return true;
     }
 
