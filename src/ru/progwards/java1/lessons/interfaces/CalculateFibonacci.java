@@ -1,50 +1,42 @@
 package ru.progwards.java1.lessons.interfaces;
 
 public class CalculateFibonacci {
-
-    private static CacheInfo lastFibo;
+    static CacheInfo lastFibo;
 
     static class CacheInfo {
-       public int n;
-       public int fibo;
+        int n;
+        int fibo;
+        int score;
+
+        CacheInfo (int fibo, int score){
+            this.fibo = fibo;
+            this.score = score;
+        }
     }
-
     public static int fiboNumber(int n) {
-
-        lastFibo = new CacheInfo();
-
-        if (lastFibo.n == n){
+        if (lastFibo != null && n == lastFibo.score){
             return lastFibo.fibo;
         }
-
-        int result;
-        int n0 = 1;
-        int n1 = 1;
-        int n2 = 0;
-        if (n < 0){
-            result = 0;
-        } else if(n == 1 || n == 2) {
-            result = 1;
-        } else {
-            for(int i = 3; i <= n; i++){
-                n2=n0+n1;
-                n0=n1;
-                n1=n2;
+        int r = 1;
+        int x = 0;
+        int z = 0;
+        for (int i = 1; i <= n; i++) {
+            z = r + x;
+            x = r;
+            r = z;
+            if (i == 1) {
+                x = 0;
             }
-            result = n2;
+            if (i != n) {
+                lastFibo = new CacheInfo(r, i);
+            }
         }
-        lastFibo.fibo = result;
-        return result;
+        return r;
     }
 
-    public static CacheInfo getLastFibo(){
-            return lastFibo;
-        }
 
-    public static void clearLastFibo(){
-        lastFibo = null;
+    public static void main(String[] args) {
+        fiboNumber(10);
     }
 }
-
-
 
