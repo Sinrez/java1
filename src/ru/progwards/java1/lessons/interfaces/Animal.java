@@ -1,105 +1,97 @@
 package ru.progwards.java1.lessons.interfaces;
 
-import java.util.Objects;
+public class Animal implements FoodCompare, CompareWeight, Comparable<Animal>{
 
-public class Animal implements FoodCompare, Comparable<Animal> {
+    public enum AnimalKind {ANIMAL, COW, HAMSTER, DUCK};
+    public enum FoodKind {UNKNOWN, HAY, CORN};
     private double weight;
 
-    public Animal(double weight) {
-
+    public Animal(double weight)
+    {
         this.weight = weight;
     }
 
-    @Override
-    public int compareTo(Animal o) {
-        int num = 0;
-        if (this.weight < o.weight) {
-            num = -1;
-        }
-
-        if (this.weight > o.weight) {
-            num = 1;
-        }
-        return num;
-    }
-
-    enum AnimalKind {
-        ANIMAL,
-        COW,
-        HAMSTER,
-        DUCK
-    }
-
-    enum FoodKind {
-        UNKNOWN,
-        HAY,
-        CORN
-    }
-
-    public AnimalKind getKind() {
+    public AnimalKind getKind()
+    {
         return AnimalKind.ANIMAL;
     }
 
-    public FoodKind getFoodKind() {
+    public FoodKind getFoodKind()
+    {
         return FoodKind.UNKNOWN;
     }
 
-    @Override
-    public String toString() {
-        return "I am " + getKind() + ", eat " + getFoodKind();
+    public String toString()
+    {
+        return "I am " + getKind() + ", eat " + getFoodKind() + " " + calculateFoodWeight();
     }
 
-    public double getWeight() {
+    public double getWeight()
+    {
         return weight;
     }
 
-    public double getFoodCoeff() {
+    public double getFoodCoeff()
+    {
         return 0.02;
     }
 
-    public double calculateFoodWeight() {
-        return getWeight() * getFoodCoeff();
+    public double calculateFoodWeight()
+    {
+        return weight * getFoodCoeff();
     }
 
-    public String toStringFull() {
-        return toString() +  " " + calculateFoodWeight();
-    }
+    public boolean equals(Object o)
+    {
+        if (!o.getClass().equals(Animal.class) && !o.getClass().getSuperclass().equals(Animal.class)) return false;
 
-    public double getFood1kgPrice() {
-        double price =0;
-        switch (getFoodKind()) {
-            case HAY :
-                price = 20;
-                break;
-            case CORN:
-                price = 50;
-                break;
-            case UNKNOWN:
-                price = 0;
-                break;
+        Animal a = (Animal)o;
+        if (this.getWeight() == a.getWeight())
+        {
+            if (this.getKind() == a.getKind())
+            {
+                return true;
+            }
         }
-        return price;
+
+        return false;
     }
 
-    public double getFoodPrice() {
+    public double getFood1kgPrice()
+    {
+        switch (getFoodKind())
+        {
+            case HAY:
+                return 20D;
+            case CORN:
+                return 50D;
+            case UNKNOWN:
+                return 0D;
+        }
+        return 0D;
+    }
+
+    public double getFoodPrice()
+    {
         return calculateFoodWeight() * getFood1kgPrice();
     }
 
     @Override
-    public int compareFoodPrice(Animal aminal) {
-        return Double.compare(this.getFoodPrice(), aminal.getFoodPrice());
+    public int compareFoodPrice(Animal animal) {
+        return Double.compare(this.getFoodPrice(), animal.getFoodPrice());
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Animal animal = (Animal) o;
-        return Double.compare(animal.weight, weight) == 0;
+    public int compareTo(Animal o) {
+        if (this.getWeight() < o.getWeight()) return -1;
+        else if (this.getWeight() > o.getWeight()) return 1;
+        else return 0;
     }
 
     @Override
-    public int hashCode() {
-        return Objects.hash(weight);
+    public CompareResult compareWeight(CompareWeight smthHasWeigt) {
+        if (this.getWeight() < ((Animal)smthHasWeigt).getWeight()) return CompareWeight.CompareResult.LESS;
+        else if (this.getWeight() > ((Animal)smthHasWeigt).getWeight()) return CompareWeight.CompareResult.GREATER;
+        else return CompareWeight.CompareResult.EQUAL;
     }
 }
